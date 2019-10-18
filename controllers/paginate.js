@@ -9,8 +9,8 @@ var Paginate = require('../models/paginate');
  * @param {Object} request
  * @param {Object} response
  */
-router.get('/:pageNo', function (request, response) {
-    var perPage = 10, page = Math.max(0, request.param('pageNo'));
+router.get('/', function (request, response) {
+    var perPage = 10, page = Math.max(0, request.query.pageNo);
     var query = Paginate.find({}).skip(page * perPage).limit(perPage);
     Paginate.count({}, function (error, totalCount) {
         var result = {};
